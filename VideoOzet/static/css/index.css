@@ -1,0 +1,150 @@
+:root {
+      --background: #111;
+      --card-bg: #1e1e2a;
+      --accent: #8a2be2;
+      --text: #e0e0e0;
+      --border: #333;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: var(--text);
+    }
+    body {
+      background: var(--background);
+      padding: 40px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      max-height: calc(100vh - 80px);
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .card.selected {
+      border-color: var(--accent);
+      background: #2a2438;
+    }
+    .card:hover {
+      border-color: var(--accent);
+    }
+    .add-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+    }
+    .add-box:hover {
+      color: var(--accent);
+    }
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+    .modal {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+    }
+    .modal .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.2em;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .modal input {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: #2a2a3a;
+      color: var(--text);
+    }
+    .modal button.send-btn {
+      padding: 10px 20px;
+      background: var(--accent);
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    .modal button.send-btn:hover {
+      opacity: 0.8;
+    }
+
+    #notification-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+    }
+
+    .notification {
+        background-color: #f44336; /* kırmızı - hata için */
+        color: white;
+        padding: 12px 20px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+
+    .logout-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+
+    .logout-btn {
+      padding: 10px 20px;
+      background-color: #e63946;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #d62828;
+    }

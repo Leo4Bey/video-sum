@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTK Proje | Sohbet</title>
+  <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+</head>
+<body>
+<div class="sidebar">
+    <h2><a class="chat-link" href="{% url 'home' %}">Ana Sayfa</a></h2> 
+    <h2></h2>
+    <ul class="chat-list" id="chatList">
+      {% for chat in user_chats %}
+        <li><a class="chat-link" href="/chat/{{ chat.id }}">{{ chat.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="chat-panel">
+    <div class="chat-header" id="chatHeader">{{ current_chat.title }}</div>
+    <div class="messages" id="messages">
+      {% for msg in history %}
+        <div class="message {{ msg.sender }}">
+          <div class="bubble">{{ msg.content }}</div>
+        </div>
+      {% endfor %}
+    </div>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="input-area">
+        <textarea id="messageInput" name="deneme" placeholder="Videoyu özetler misin..."></textarea>
+        <button id="sendBtn">Gönder</button>
+      </div>
+    </form>
+  </div>
+  <script src="{% static 'js/chat.js' %}"></script>  
+
+</body>
+</html>

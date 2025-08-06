@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTK Proje | Anasayfa</title>
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+
+  <div class="logout-container">
+    <button class="logout-btn" onclick="window.location.href='/logout'">Çıkış Yap</button>
+  </div>
+
+  {% if messages %}
+    <div id="notification-container">
+        {% for message in messages %}
+            <div class="notification {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+  <div class="container">
+    <div class="card add-box" id="addBtn">+</div>
+    {% for chat in user_chats %}
+      <div class="card"><a href="/chat/{{ chat.id }}">{{ chat.title }}</a></div>
+    {% endfor %}
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <form method="POST">
+        {% csrf_token %}
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <h3>Video Ekle</h3>
+        <input type="text" name="deneme" placeholder="Video URL'sini yapıştırın..." id="modalInput" />
+        <button class="send-btn" id="sendBtn">Gönder</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="{% static 'js/index.js' %}"></script>
+
+</body>
+</html>
